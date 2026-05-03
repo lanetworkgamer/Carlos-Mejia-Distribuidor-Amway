@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Mejia | Bienestar Amway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-green {
+            background: linear-gradient(135deg, #1a3a16 0%, #2d5a27 100%);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .cart-sidebar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hidden-cart {
+            transform: translateX(100%);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navegación -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 gradient-green rounded-full flex items-center justify-center text-white shadow-lg">
+                    <i class="fas fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold block leading-none">Carlos Mejia</span>
+                    <span class="text-xs text-green-700 font-semibold tracking-widest uppercase">Distribuidor Amway</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#inicio" class="hover:text-green-700 transition">Inicio</a>
+                <a href="#categorias" class="hover:text-green-700 transition">Categorías</a>
+                <a href="#productos" class="hover:text-green-700 transition">Productos</a>
+                <a href="#contacto" class="hover:text-green-700 transition">Contacto</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart()" class="relative p-2 text-gray-700 hover:text-green-700 transition">
+                    <i class="fas fa-shopping-bag text-2xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-green-600 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
+                </button>
+                <a href="https://wa.me/18001234567" target="_blank" class="hidden sm:block bg-green-600 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-green-700 transition">
+                    Pide por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative h-[85vh] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=2000" alt="Estilo de vida natural" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-white">
+            <div class="max-w-3xl">
+                <span class="inline-block px-4 py-1 bg-green-600 text-xs font-bold rounded-full mb-6 uppercase tracking-widest">Bienestar, energía y limpieza</span>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Cuido tu salud y tu hogar con productos naturales</h1>
+                <p class="text-xl mb-10 text-gray-200 font-light max-w-xl">Descubre soluciones Amway para un estilo de vida consciente, sin químicos agresivos y con garantía de satisfacción total.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#productos" class="bg-white text-green-900 px-8 py-4 rounded-xl font-bold text-center hover:bg-green-50 transition shadow-xl">
+                        Ver Catálogo de Productos
+                    </a>
+                    <a href="#contacto" class="bg-transparent border-2 border-white/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition">
+                        Asesoría Personalizada
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorías Basadas en el Perfil -->
+    <section id="categorias" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 italic text-gray-900">Nuestras Soluciones</h2>
+                <div class="w-24 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                <div class="group cursor-pointer text-center">
+                    <div class="aspect-square bg-gray-50 rounded-3xl p-10 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-heartbeat text-5xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Nutrición & Energía</h3>
+                </div>
+                <div class="group cursor-pointer text-center">
+                    <div class="aspect-square bg-gray-50 rounded-3xl p-10 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-leaf text-5xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Hogar Ecológico</h3>
+                </div>
+                <div class="group cursor-pointer text-center">
+                    <div class="aspect-square bg-gray-50 rounded-3xl p-10 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-smile text-5xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Higiene Bucal</h3>
+                </div>
+                <div class="group cursor-pointer text-center">
+                    <div class="aspect-square bg-gray-50 rounded-3xl p-10 mb-6 group-hover:bg-green-600 group-hover:text-white transition-all duration-300 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-user-check text-5xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Cuidado Personal</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos del Perfil -->
+    <section id="productos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <h2 class="text-3xl font-bold text-gray-900">Productos Recomendados</h2>
+                    <p class="text-gray-600 mt-2">Selección exclusiva de Carlos Mejia para tu bienestar diario.</p>
+                </div>
+                <div class="flex bg-white p-1 rounded-xl shadow-sm border">
+                    <button class="px-6 py-2 bg-green-600 text-white rounded-lg font-bold text-sm">Todos</button>
+                    <button class="px-6 py-2 text-gray-500 hover:text-green-600 font-bold text-sm">Salud</button>
+                    <button class="px-6 py-2 text-gray-500 hover:text-green-600 font-bold text-sm">Hogar</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
+                <!-- Inyectado por JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonio / Bio corta -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/3">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-green-200 rounded-full blur-2xl opacity-50"></div>
+                    <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?auto=format&fit=crop&q=80&w=800" alt="Carlos Mejia" class="relative rounded-2xl shadow-2xl w-full aspect-square object-cover">
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h2 class="text-4xl font-bold mb-6 italic text-gray-900">"Mi misión es llevar bienestar a cada familia"</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    Soy <strong>Carlos Mejia</strong>, y como distribuidor de Amway, me especializo en ofrecer productos que no solo funcionan, sino que respetan tu salud y el medio ambiente. Desde suplementos que te dan la energía para tu día a día, hasta soluciones de limpieza que transforman tu hogar sin químicos agresivos.
+                </p>
+                <div class="flex items-center space-x-6">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-green-700">100%</p>
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Natural</p>
+                    </div>
+                    <div class="w-px h-12 bg-gray-200"></div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-green-700">90</p>
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Días Garantía</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Basado en Ubicación Real -->
+    <section id="contacto" class="py-20 bg-gray-50 border-t">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                <div class="p-12 md:w-5/12 gradient-green text-white">
+                    <h2 class="text-3xl font-bold mb-6">Contáctame Directo</h2>
+                    <p class="text-green-100 mb-10 italic">Pide tus productos o solicita una demostración en casa.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <div>
+                                <p class="font-bold">Ubicación</p>
+                                <p class="text-sm text-green-100">Calle Mella, Plaza Hermanos Villar<br>Santo Domingo, Dominican Republic</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i class="fab fa-instagram mt-1"></i>
+                            <div>
+                                <p class="font-bold">Instagram</p>
+                                <p class="text-sm text-green-100">@carlosmejiaamway</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i class="fab fa-whatsapp mt-1"></i>
+                            <div>
+                                <p class="font-bold">WhatsApp</p>
+                                <p class="text-sm text-green-100">+1 (829) XXX-XXXX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-12 md:w-7/12">
+                    <form onsubmit="event.preventDefault(); showMessage('¡Mensaje enviado! Carlos te contactará pronto.')">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Nombre</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-green-500 outline-none transition" placeholder="Tu nombre" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Teléfono</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-green-500 outline-none transition" placeholder="Tu móvil" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Me interesa...</label>
+                            <select class="w-full px-4 py-3 rounded-xl border-gray-100 bg-gray-50 outline-none focus:ring-2 focus:ring-green-500 transition">
+                                <option>Comprar productos</option>
+                                <option>Asesoría en nutrición</option>
+                                <option>Ser distribuidor</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-gray-900 text-white py-4 rounded-xl font-bold hover:bg-green-700 transition shadow-lg">
+                            Enviar Solicitud
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-10">
+                <span class="text-3xl font-bold tracking-tight">Carlos <span class="text-green-500">Mejia</span></span>
+                <p class="text-gray-500 mt-2">Tu salud es lo más importante.</p>
+            </div>
+            <div class="flex justify-center space-x-8 mb-10">
+                <a href="#" class="text-2xl hover:text-green-500 transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-2xl hover:text-green-500 transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="border-t border-gray-800 pt-10 text-gray-500 text-sm">
+                <p>© 2024 Carlos Mejia | Distribuidor Independiente Amway.</p>
+                <p class="mt-1 font-light italic">"Porque el verdadero éxito empieza con un cuerpo sano."</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrito -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 z-[60] hidden backdrop-blur-sm"></div>
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white z-[70] shadow-2xl cart-sidebar hidden-cart flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center">
+            <h2 class="text-xl font-bold">Tu Lista de Pedido</h2>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-black"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <p class="text-gray-400 text-center py-20">No tienes productos añadidos</p>
+        </div>
+
+        <div class="p-6 bg-gray-50 border-t">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gray-500 font-medium">Subtotal aproximado:</span>
+                <span id="cart-total" class="text-2xl font-bold text-green-700">$0.00</span>
+            </div>
+            <button onclick="showMessage('Preparando tu pedido para WhatsApp...')" class="w-full gradient-green text-white py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center space-x-2">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Confirmar por WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-2xl z-[100] transform translate-y-32 opacity-0 transition-all duration-500 font-medium">
+        ¡Producto añadido al carrito!
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Double X™ - Multivitamínico", price: 89.00, category: "Salud", image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=400" },
+            { id: 2, name: "Glister™ - Desodorante Roll-on", price: 12.50, category: "Cuidado", image: "https://images.unsplash.com/photo-1559594882-7b1895a43f27?auto=format&fit=crop&q=80&w=400" },
+            { id: 3, name: "L.O.C.™ - Limpiador Multiusos", price: 19.90, category: "Hogar", image: "https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&q=80&w=400" },
+            { id: 4, name: "Artistry™ - Mascarilla Pulidora", price: 35.00, category: "Belleza", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=400" },
+            { id: 5, name: "Concentrado de Frutas y Vegetales", price: 45.00, category: "Salud", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400" },
+            { id: 6, name: "XS™ Energy Drink - Lata", price: 3.50, category: "Energía", image: "https://images.unsplash.com/photo-1622543953495-a63ef8921570?auto=format&fit=crop&q=80&w=400" }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="bg-white rounded-[1.5rem] overflow-hidden product-card transition border border-gray-100 flex flex-col shadow-sm">
+                    <div class="h-56 overflow-hidden relative group">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">${p.category}</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-gray-900 mb-1 leading-tight h-10 overflow-hidden">${p.name}</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <p class="text-green-700 font-black text-2xl">$${p.price.toFixed(2)}</p>
+                            <button onclick="addToCart(${p.id})" class="bg-gray-100 text-gray-900 h-10 w-10 rounded-full hover:bg-green-600 hover:text-white transition flex items-center justify-center">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const exists = cart.find(item => item.id === id);
+            if(exists) exists.quantity++;
+            else cart.push({...product, quantity: 1});
+            
+            updateCartUI();
+            showToast(`Añadido: ${product.name}`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            const badge = document.getElementById('cart-count');
+
+            badge.innerText = cart.reduce((a, b) => a + b.quantity, 0);
+            total.innerText = `$${cart.reduce((a, b) => a + (b.price * b.quantity), 0).toFixed(2)}`;
+
+            if(cart.length === 0) {
+                container.innerHTML = `<p class="text-gray-400 text-center py-20">No tienes productos añadidos</p>`;
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="flex items-center space-x-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg shadow-sm">
+                    <div class="flex-grow">
+                        <h4 class="text-sm font-bold text-gray-800 leading-tight">${item.name}</h4>
+                        <p class="text-xs text-green-600 font-bold mt-1">${item.quantity} x $${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-gray-300 hover:text-red-500 p-2"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('hidden-cart');
+            document.getElementById('cart-overlay').classList.toggle('hidden');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-y-32', 'opacity-0'), 2500);
+        }
+
+        function showMessage(msg) {
+            showToast(msg);
+        }
+
+        window.onload = renderProducts;
+    </script>
+</body>
+</html>
